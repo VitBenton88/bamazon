@@ -5,7 +5,8 @@
   "main": "bamazon.js",
   "dependencies": {
     "inquirer": "^3.2.2",
-    "mysql": "^2.14.1"
+    "mysql": "^2.14.1",
+    "table": "^4.0.1"
   },
   "devDependencies": {},
   "scripts": {
