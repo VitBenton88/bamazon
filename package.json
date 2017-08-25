@@ -1,0 +1,24 @@
+{
+  "name": "bamazon",
+  "version": "1.0.0",
+  "description": "Amazon-like storefront with the MySQL",
+  "main": "bamazon.js",
+  "dependencies": {
+    "inquirer": "^3.2.2",
+    "mysql": "^2.14.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VitBenton88/bamazon.git"
+  },
+  "author": "Vit Benton <vit_benton@yahoo.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VitBenton88/bamazon/issues"
+  },
+  "homepage": "https://github.com/VitBenton88/bamazon#readme"
+}
