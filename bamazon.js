@@ -1,4 +1,3 @@
-var mysql = require('mysql');
 var inquirer = require("inquirer");
 var customer = require("./bamazonCustomer");
 var manager = require("./bamazonManager");
@@ -10,7 +9,7 @@ function start () {
       type: "list",
       message: "Would you like to run bamazon as a CUSTOMER or a MANAGER?",
       choices: ["MANAGER", "CUSTOMER"],
-      default: "MANAGER"
+      default: "CUSTOMER"
     })
     .then(function(answer) {
 
