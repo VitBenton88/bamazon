@@ -53,25 +53,31 @@ var checkout = function (){
     ])
     .then(function(answer) {
       
-  //       connection.connect(function(err) {
+        connection.connect(function(err) {
 
-		//   if (err) throw err;
+		  if (err) throw err;
 
-		//   connection.query("SELECT * FROM products",
+		  connection.query("SELECT * FROM products WHERE ?",
 
-		// 	function(err, res) {
+		  	{
+		  		item_id: productSelection.answer
+		  	},
 
-		// 	    if (err) throw err;
+			function(err, res) {
 
-		// 	    var parseData =  JSON.parse(JSON.stringify(res)); 
+			    if (err) throw err;
 
-		// 	    for (i = 0; i < parseData.length; i++) {
-		// 	    	productIDs.push(parseData[i].item_id)
-		// 	    }
+			    else if (res.[0].stock_quantity < answer.quantity){
+			    	console.log('Not enough quantity for your order!');
+			    	checkout();
+			    }
 
-		// 	    tableGen(res);//code to generate table format in terminal   
-		//  	});
-		// });
+			    else {
+
+			    }
+ 
+		 	});
+		});
     });
 };
 
