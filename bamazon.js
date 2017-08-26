@@ -2,7 +2,7 @@ var inquirer = require("inquirer");
 var customer = require("./bamazonCustomer");
 var manager = require("./bamazonManager");
 
-function start () {
+var start = function () {
   inquirer
     .prompt({
       name: "userType",

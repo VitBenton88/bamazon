@@ -1,10 +1,12 @@
 var mysql = require('mysql');
 var inquirer = require("inquirer");
+var manager = require("./bamazonManager");
 var tableGen = require("./tableGen");
 var receiptGen = require("./receiptGen");
 var productIDs = [];
 var shoppingCart = 0;
 var total = 0;
+var newQuantity = 0;
 var connection = mysql.createConnection({
 		host: 'localHost',
 		port: 3306,
@@ -15,31 +17,62 @@ var connection = mysql.createConnection({
 
 var start = function(){
 
-	connection.connect(function(err) {
+	if (connection.state === 'disconnected'){
 
-	  if (err) throw err;
+		connection.connect(function(err) {
 
-	  console.log("connected as id " + connection.threadId + "\n");
+		  if (err) throw err;
 
-	  connection.query("SELECT * FROM products",
+		  console.log("connected as id " + connection.threadId + "\n");
 
-		 function(err, res) {
+		  connection.query("SELECT * FROM products",
 
-		    if (err) throw err;
+			function(err, res) {
 
-		    var parseData =  JSON.parse(JSON.stringify(res)); 
+			    if (err) throw err;
 
-		    for (i = 0; i < parseData.length; i++) {
-		    	productIDs.push(parseData[i].item_id)
-		    }
+			    var parseData =  JSON.parse(JSON.stringify(res)); 
 
-		    tableGen(res);//code to generate table format in terminal
+			    for (i = 0; i < parseData.length; i++) {
+			    	productIDs.push(parseData[i].item_id)
+			    }
 
-		    checkout();//next step, ask what they want to buy and how much ...
+			    tableGen(res);//code to generate table format in terminal
 
-	 	});
+			    checkout();//next step, ask what they want to buy and how much ...
 
-	});
+		 	}
+
+		);
+
+		});
+
+	}
+
+	else {
+
+		connection.query("SELECT * FROM products",
+
+			function(err, res) {
+
+			    if (err) throw err;
+
+			    var parseData =  JSON.parse(JSON.stringify(res)); 
+
+			    for (i = 0; i < parseData.length; i++) {
+			    	productIDs.push(parseData[i].item_id)
+			    }
+
+			    tableGen(res);//code to generate table format in terminal
+
+			    checkout();//next step, ask what they want to buy and how much ...
+
+		 	}
+
+		);
+		
+	};
+
 };
 
 var checkout = function (){
@@ -74,6 +107,7 @@ var checkout = function (){
 
 			    	shoppingCart = res[0].item_id;
 			    	total = Math.round(answer.quantity * res[0].price * 100) / 100;
+			    	newQuantity = res[0].stock_quantity - answer.quantity;
 			    	var receiptID = Math.floor(Math.random() * 100) + 1;
 			    	var receiptArray = [receiptID,res[0].product_name,res[0].price,answer.quantity,total]; 
 
@@ -91,8 +125,48 @@ var checkout = function (){
 
 var updateDB = function(){
 
-	console.log("finish this function!");
+	connection.query(
+            "UPDATE products SET ? WHERE ?",
+            [
+              {
+                stock_quantity: newQuantity
+              },
+              {
+                item_id: shoppingCart
+              }
+            ],
+            function(error) {
+              if (error) throw err;
 
+              restart();
+
+            }
+          );
+
+};
+
+var restart = function () {
+  inquirer
+    .prompt({
+      name: "userType",
+      type: "list",
+      message: "Would you like to run bamazon as a CUSTOMER or a MANAGER?",
+      choices: ["MANAGER", "CUSTOMER"],
+      default: "CUSTOMER"
+    })
+    .then(function(answer) {
+
+	    switch(answer.userType) {
+
+	    	case "CUSTOMER":
+	        start();
+	        break;
+
+	    	default:
+	        manager();
+		}
+
+    });
 
 };
 
