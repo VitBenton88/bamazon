@@ -33,14 +33,14 @@ var start = function(){
 
 		    tableGen(res);//code to generate table format in terminal
 
-		    purchaseInquiry();//next step, ask what they want to buy and how much ...
+		    checkout();//next step, ask what they want to buy and how much ...
 
 	 	});
 
 	});
 };
 
-var purchaseInquiry = function (){
+var checkout = function (){
 
 	inquirer
     .prompt([
