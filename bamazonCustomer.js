@@ -1,10 +1,9 @@
 var mysql = require('mysql');
 var inquirer = require("inquirer");
 var tableGen = require("./tableGen");
-
-var start = function(){
-
-	var connection = mysql.createConnection({
+var productIDs = [];
+var currentPurchase = 0;
+var connection = mysql.createConnection({
 		host: 'localHost',
 		port: 3306,
 		user: 'root',
@@ -12,58 +11,68 @@ var start = function(){
 		database: 'bamazon'
 	});
 
+var start = function(){
+
 	connection.connect(function(err) {
 
 	  if (err) throw err;
 
 	  console.log("connected as id " + connection.threadId + "\n");
 
-	  var query = process.argv[2];
-	  var query2 = process.argv[3];
-	  var query3 = process.argv[4];
-
 	  connection.query("SELECT * FROM products",
 
 		 function(err, res) {
 
-	    if (err) throw err;
+		    if (err) throw err;
 
-	    tableGen(res);
+		    var parseData =  JSON.parse(JSON.stringify(res)); 
 
-	    connection.end();
+		    for (i = 0; i < parseData.length; i++) {
+		    	productIDs.push(parseData[i].item_id)
+		    }
 
-	    // productSelect();
+		    tableGen(res);//code to generate table format in terminal
 
-	  });
+		    purchaseInquiry();//next step, ask what they want to buy and how much ...
+
+	 	});
 
 	});
 };
 
-// function productSelect(){
+var purchaseInquiry = function (){
 
-// 	inquirer
-//     .prompt({
-//       name: "userType",
-//       type: "list",
-//       message: "Would you like to run bamazon as a CUSTOMER or a MANAGER?",
-//       choices: ["MANAGER", "CUSTOMER"],
-//       default: "MANAGER"
-//     })
-//     .then(function(answer) {
+	inquirer
+    .prompt([
+    { name: "productSelection",
+      message: "Please select the ID of the product you would like to purchase:"
+    },
+    { name: "quantity",
+      message: "How many of this product would you like to purchase?"
+    }
+    ])
+    .then(function(answer) {
       
-//       if (answer.userType == "CUSTOMER") {
+  //       connection.connect(function(err) {
 
-//         customer();
+		//   if (err) throw err;
 
-//       }
+		//   connection.query("SELECT * FROM products",
 
-//       else {
+		// 	function(err, res) {
 
-//         manager();
+		// 	    if (err) throw err;
 
-//       }
+		// 	    var parseData =  JSON.parse(JSON.stringify(res)); 
 
-//     });
-// };
+		// 	    for (i = 0; i < parseData.length; i++) {
+		// 	    	productIDs.push(parseData[i].item_id)
+		// 	    }
+
+		// 	    tableGen(res);//code to generate table format in terminal   
+		//  	});
+		// });
+    });
+};
 
 module.exports = start;
