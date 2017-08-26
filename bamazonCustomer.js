@@ -1,8 +1,10 @@
 var mysql = require('mysql');
 var inquirer = require("inquirer");
 var tableGen = require("./tableGen");
+var receiptGen = require("./receiptGen");
 var productIDs = [];
-var currentPurchase = 0;
+var shoppingCart = 0;
+var total = 0;
 var connection = mysql.createConnection({
 		host: 'localHost',
 		port: 3306,
@@ -52,33 +54,46 @@ var checkout = function (){
     }
     ])
     .then(function(answer) {
-      
-        connection.connect(function(err) {
-
-		  if (err) throw err;
 
 		  connection.query("SELECT * FROM products WHERE ?",
 
 		  	{
-		  		item_id: productSelection.answer
+		  		item_id: answer.productSelection
 		  	},
 
 			function(err, res) {
 
 			    if (err) throw err;
 
-			    else if (res.[0].stock_quantity < answer.quantity){
-			    	console.log('Not enough quantity for your order!');
+			    else if (res[0].stock_quantity < answer.quantity){
+			    	console.log('Insufficient quantity to complete your order!');
 			    	checkout();
 			    }
 
 			    else {
 
+			    	shoppingCart = res[0].item_id;
+			    	total = Math.round(answer.quantity * res[0].price * 100) / 100;
+			    	var receiptID = Math.floor(Math.random() * 100) + 1;
+			    	var receiptArray = [receiptID,res[0].product_name,res[0].price,answer.quantity,total]; 
+
+			    	console.log("Thank you for your purchase! Here is your receipt:\n");
+			    	receiptGen(receiptArray);
+
+			    	updateDB();
+
 			    }
  
-		 	});
-		});
+		 	}
+		);
     });
+};
+
+var updateDB = function(){
+
+	console.log("finish this function!");
+
+
 };
 
 module.exports = start;
