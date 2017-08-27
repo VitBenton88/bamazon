@@ -25,31 +25,9 @@ var start = function(){
 
 		  console.log("connected as id " + connection.threadId + "\n");
 
-		  connection.query("SELECT * FROM products",
-
-			function(err, res) {
-
-			    if (err) throw err;
-
-			    var parseData =  JSON.parse(JSON.stringify(res)); 
-
-			    for (i = 0; i < parseData.length; i++) {
-			    	productIDs.push(parseData[i].item_id)
-			    }
-
-			    tableGen(res);//code to generate table format in terminal
-
-			    checkout();//next step, ask what they want to buy and how much ...
-
-		 	}
-
-		);
-
 		});
 
-	}
-
-	else {
+	};
 
 		connection.query("SELECT * FROM products",
 
@@ -70,8 +48,6 @@ var start = function(){
 		 	}
 
 		);
-		
-	};
 
 };
 

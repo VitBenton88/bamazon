@@ -1,18 +1,13 @@
 const {table} = require('table');
 
-
 var receiptGen = function (inputData){
 
     var parseData =  JSON.parse(JSON.stringify(inputData)); 
     var tableHeaders = ["Receipt ID","Product Name","Price","Quantity","Total"];
     var dataArray = [tableHeaders,inputData];
 
-    let config,
-        data,
-        output;
-     
     data = dataArray;
-     
+
     config = {
         columns: {
             0: {

@@ -9,7 +9,7 @@ var start = function () {
       type: "list",
       message: "Would you like to run bamazon as a CUSTOMER or a MANAGER?",
       choices: ["MANAGER", "CUSTOMER"],
-      default: "CUSTOMER"
+      default: "MANAGER"
     })
     .then(function(answer) {
 
