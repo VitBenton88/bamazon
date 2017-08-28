@@ -8,5 +8,5 @@ Let's get started ...
 
 **First** let's load bamazon.js in terminal ...
 
-![Loading bamazon](/images/startBamazon.jpeg)
-Format: ![Load bamazon in terminal](/images/startBamazon.jpeg)
+![Screenshot: Loading bamazon]
+(/images/startBamazon.JPEG)
