@@ -114,35 +114,10 @@ var updateDB = function(){
             function(error) {
               if (error) throw err;
 
-              restart();
+              start();
 
             }
           );
-
-};
-
-var restart = function () {
-  inquirer
-    .prompt({
-      name: "userType",
-      type: "list",
-      message: "Would you like to run bamazon as a CUSTOMER or a MANAGER?",
-      choices: ["MANAGER", "CUSTOMER"],
-      default: "CUSTOMER"
-    })
-    .then(function(answer) {
-
-	    switch(answer.userType) {
-
-	    	case "CUSTOMER":
-	        start();
-	        break;
-
-	    	default:
-	        manager();
-		}
-
-    });
 
 };
 

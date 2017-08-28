@@ -8,8 +8,8 @@ var start = function () {
       name: "userType",
       type: "list",
       message: "Would you like to run bamazon as a CUSTOMER or a MANAGER?",
-      choices: ["MANAGER", "CUSTOMER"],
-      default: "MANAGER"
+      choices: ["CUSTOMER", "MANAGER"],
+      default: "CUSTOMER"
     })
     .then(function(answer) {
 
