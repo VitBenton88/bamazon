@@ -37,21 +37,21 @@ Below the graph you will receive your first prompt, which asks for the numeric *
 
 ![Product ID Prompt](/images/idPrompt.jpg?raw=true "Product ID Prompt")
 
-After entering a product ID, you will be asked to enter a quatity ...
+After entering a product ID, you will be asked to enter a quantity ...
 
 ![Quantity Prompt](/images/quantPrompt.jpg?raw=true "Quantity Prompt")
 
 Once a quantity is selected, your order will be processed, a message will appear thanking you for your order, and a **receipt** will be generated. 
 
-The receipt consists of a **unique receipt ID** and the name, price, quantity and total of the item that was purchased:
+The receipt consists of a **unique receipt ID**, the name, price, quantity of the item that was purchased, and the total of the purchase:
 
 ![Receipt Example](/images/receiptExample.jpg?raw=true "Receipt Example")
 
-Under the receipt an updated table displaying the available items for purchase will display:
+Under the receipt an updated table displaying the available items for purchase will display. *This table will display the updated quantity of the item purchased:*
 
 ![Updated Table](/images/updatedTable.jpg?raw=true "Updated Table")
 
-At this point you will return to the beginning of the Bamazon Customer App.
+At this point you will return to the beginning step of the Bamazon Customer App.
 
 Now let's go over the Bamazon Manager App ...
 
@@ -98,7 +98,7 @@ The headers of the table are as follows:
 
 **Add to Inventory**
 
-The 'Add to Inventory' option allows the user to update the qunatity of an item in the database of products.
+The 'Add to Inventory' option allows the user to update the quantity of an item in the database of products.
 
 After selecting this option, a table containing the available items for purchase will display and you will be prompted for the **Product ID** of the product you would like to update the quantity of: 
 
@@ -106,7 +106,7 @@ After selecting this option, a table containing the available items for purchase
 
 After submitting a Product ID, you will be prompted for the new quantity of the selected item.
 
-*Remember, the number you are providing is the **new qunaitiy**, it will not be added to the existing quanitiy.* 
+*Remember, the number you are providing is the **new quantity**, it will not be added to the existing quantity.* 
 
 After submitting the new quantity, a confirmation will appear and an updated table displaying the available items for purchase will display. *This table will contain the updated quantity.*
 
