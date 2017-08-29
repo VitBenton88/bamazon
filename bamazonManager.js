@@ -109,10 +109,23 @@ var addInventory = function(){
 	inquirer
     .prompt([
     { name: "productSelection",
-      message: "Please select the ID of the product you would like to update the quantity of:"
+      message: "Please select the ID of the product you would like to update the quantity of:",
+      validate: function(value) {
+          for(i=0; i<productIDs.length; i++)
+       	  if(value == productIDs[i]) return true;
+    	  console.log(' <= Not a valid Product ID!')
+    	  return false;
+        }
     },
     { name: "newQuantity",
-      message: "What is the new quantity of this item?"
+      message: "What is the new quantity of this item?",
+      validate: function(value) {
+          if (isNaN(value) === false) {
+            return true;
+          }
+          console.log(' <= Not a numeric value!')
+          return false;
+        }
     }
     ])
     .then(function(answer) {
@@ -153,10 +166,24 @@ var addProduct = function(){
       message: "New product's department?"
     },
     { name: "price",
-      message: "New product's price?"
+      message: "New product's price?",
+      validate: function(value) {
+          if (isNaN(value) === false) {
+            return true;
+          }
+          console.log(' <= Not a numeric value!')
+          return false;
+        }
     },
     { name: "quantity",
-      message: "New product's quantity?"
+      message: "New product's quantity?",
+      validate: function(value) {
+          if (isNaN(value) === false) {
+            return true;
+          }
+          console.log(' <= Not a numeric value!')
+          return false;
+        }
     }
     ])
     .then(function(answer) {

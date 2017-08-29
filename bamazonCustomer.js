@@ -56,7 +56,13 @@ var checkout = function (){
 	inquirer
     .prompt([
     { name: "productSelection",
-      message: "Please select the ID of the product you would like to purchase:"
+      message: "Please select the ID of the product you would like to purchase:",
+      validate: function(value) {
+          for(i=0; i<productIDs.length; i++)
+       	  if(value == productIDs[i]) return true;
+    	  console.log(' <= Not a valid Product ID!')
+    	  return false;
+        }	
     },
     { name: "quantity",
       message: "How many of this product would you like to purchase?"
