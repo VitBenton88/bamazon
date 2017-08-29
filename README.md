@@ -45,7 +45,7 @@ After entering a product ID, you will be asked to enter a quantity ...
 
 ![Quantity Prompt](/images/quantPrompt.jpg?raw=true "Quantity Prompt")
 
-Once a quantity is selected, your order will be processed, a message will appear thanking you for your order, and a **receipt** will be generated. 
+Once a quantity is entered, your order will be processed, a message will appear thanking you for your order, and a **receipt** will be generated. 
 
 The receipt consists of a **unique receipt ID**, the name, price, quantity of the item that was purchased, and the total of the purchase:
 
