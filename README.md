@@ -14,6 +14,8 @@ Let's get started ...
 
 ![Customer or Manager](/images/custORman.jpg?raw=true "Customer or Manager")
 
+First we'll go over the Bamazon Customer App ...
+
 ### Bamazon Customer App
 
 Upon loading the Bamazon Customer App, you will be greeted with a table displaying the available items for purchase:
@@ -32,13 +34,13 @@ Below the graph you will receive your first prompt, which asks for the numeric *
 
 ![Product ID Prompt](/images/idPrompt.jpg?raw=true "Product ID Prompt")
 
-After entering a product ID, you will be asked to enter a quntity ...
+After entering a product ID, you will be asked to enter a quatity ...
 
 ![Quantity Prompt](/images/quantPrompt.jpg?raw=true "Quantity Prompt")
 
-Once a quantity is selected, you will a message will appear thanking you for your order and a **receipt** will be generated. 
+Once a quantity is selected, your order will be processed, a message will appear thanking you for your order, and a **receipt** will be generated. 
 
-The receipt consists of a **unique receipt ID and the name, price, quantity and total of the item that was purchased:
+The receipt consists of a **unique receipt ID** and the name, price, quantity and total of the item that was purchased:
 
 ![Receipt Example](/images/receiptExample.jpg?raw=true "Receipt Example")
 
