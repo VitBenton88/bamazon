@@ -112,7 +112,7 @@ After selecting this option, a table containing the available items for purchase
 
 After submitting a Product ID, you will be prompted for the new quantity of the selected item.
 
-*Remember, the number you are providing is the **new quantity**, it will not be added to the existing quantity.*
+*Please note, the value you are providing is the **new quantity**, it will not be added to the existing quantity.*
 
 *This prompt contains validation; only numeric values will be accepted!*
 
