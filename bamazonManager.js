@@ -211,4 +211,4 @@ var addProduct = function(){
 	});
 };
 
-module.exports = start;
+start();

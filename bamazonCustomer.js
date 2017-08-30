@@ -23,7 +23,7 @@ var start = function(){
 
 		  if (err) throw err;
 
-		  console.log("connected as id " + connection.threadId + "\n");
+		  // console.log("connected as id " + connection.threadId + "\n");
 
 		});
 
@@ -127,4 +127,4 @@ var updateDB = function(){
 
 };
 
-module.exports = start;
+start();
