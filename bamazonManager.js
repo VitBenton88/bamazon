@@ -1,6 +1,5 @@
 var mysql = require('mysql');
 var inquirer = require("inquirer");
-var customer = require("./bamazonCustomer");
 var tableGen = require("./tableGen");
 var productIDs = [];
 var connection = mysql.createConnection({

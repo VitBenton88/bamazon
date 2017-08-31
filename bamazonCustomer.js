@@ -1,6 +1,5 @@
 var mysql = require('mysql');
 var inquirer = require("inquirer");
-var manager = require("./bamazonManager");
 var tableGen = require("./tableGen");
 var receiptGen = require("./receiptGen");
 var productIDs = [];
